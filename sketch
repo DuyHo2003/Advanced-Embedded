@@ -1,0 +1,22 @@
+extern "C" {
+  #include "GPIO_DEAKIN.h"
+}
+
+#define LED_PORT 'A'
+#define LED_PIN 17  // Built-in LED pin on Nano 33 IoT (PA17)
+
+void setup() {
+  Config_GPIO(LED_PORT, LED_PIN, OUTPUT);  // Configure PA17 as output
+}
+
+void loop() {
+  // Blink LED 3 times quickly
+  for (int i = 0; i < 3; i++) {
+    Write_GPIO(LED_PORT, LED_PIN, LOW);   // LED ON (active LOW)
+    delay(300);                           // ON for 300 ms
+    Write_GPIO(LED_PORT, LED_PIN, HIGH);  // LED OFF
+    delay(300);                           // OFF for 300 ms
+  }
+  
+  delay(2000);  // Pause for 2 seconds before next set of blinks
+}
